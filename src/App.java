@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 import Account.Account;
 import Bank.Bank;
@@ -104,7 +104,15 @@ public class App {
     }
 
     private static void displayAccounts() {
+        List<Account> accounts = bank.getAccounts();
 
+        if(accounts.isEmpty()) {
+            System.out.println("No accounts found.");
+        } else {
+            for(Account account: accounts) {
+                System.out.println(account.getDetails());
+            }
+        }
     }
 
     private static void updateAccount() {
@@ -124,6 +132,6 @@ public class App {
     }
 
     private static void searchForAccount() {
-        
+
     }
 }
