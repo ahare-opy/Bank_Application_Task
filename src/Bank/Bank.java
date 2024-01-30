@@ -32,4 +32,20 @@ public class Bank {
 
         return account;
     }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public Account findAccount(int accountNumber) {
+        for(Account account : accounts) {
+            if(account.getAccountNumber() == accountNumber) return account;
+        }
+
+        return null;
+    }
+
+    public boolean deleteAccount(int accountNumber) {
+        return accounts.removeIf(account -> account.getAccountNumber() == accountNumber);
+    }
 }
