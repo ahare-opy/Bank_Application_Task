@@ -116,7 +116,28 @@ public class App {
     }
 
     private static void updateAccount() {
+        int accountNumber;
 
+        while (true) {
+            try {
+                System.out.println("Enter account number to update: ");
+                accountNumber = Integer.parseInt(scanner.nextLine());
+                break; 
+            } catch (Exception e) {
+                System.out.println("Enter a valid account number");
+            }
+        }
+        
+        Account account = bank.findAccount(accountNumber);
+
+        if(account == null) {
+            System.out.println("Account not found");
+            return;
+        } 
+
+        System.out.println("Enter new name:");
+        account.setName(scanner.nextLine());
+        System.out.println("Account updated successfully.");
     }
 
     private static void deleteAccount() {

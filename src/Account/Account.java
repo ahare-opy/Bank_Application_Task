@@ -16,6 +16,14 @@ public class Account {
         this.minimumBalance = minimumBalance;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public void deposit(double deposit) {
         balance += deposit;
     }
