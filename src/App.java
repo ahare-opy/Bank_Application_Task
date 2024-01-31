@@ -200,10 +200,65 @@ public class App {
     }
 
     private static void withdraw() {
+        int accountNumber;
 
+        while (true) {
+            try {
+                System.out.println("Enter the account number: ");
+                accountNumber = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Enter a valid account number.");
+            }
+        }
+
+        double amount;
+
+        while (true) {
+            System.out.println("Enter withdraw amount: ");
+            try {
+                amount = Double.parseDouble(scanner.nextLine());
+                if (amount <= 0) {
+                    System.out.println("Emter s positive number to withdraw.");
+                    continue;
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Enter a valid amount.");
+            }
+        }
+
+        Account account = bank.findAccount(accountNumber);
+        if (account == null) {
+            System.out.println("Account not found.");
+            return;
+        }
+
+        if (account.withdraw(amount)) {
+            System.out.println("Amount withdrawn successfully. New Balance: " + account.getBalance());
+        } else {
+            System.out.println("Insufficient balance.");
+        }
     }
 
     private static void searchForAccount() {
+        int accountNumber;
 
+        while (true) {
+            try {
+                System.out.println("Enter Account Number:");
+                accountNumber = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Enter a valid account number.");
+            }
+        }
+
+        Account account = bank.findAccount(accountNumber);
+        if (account == null) {
+            System.out.println("Account not found.");
+        } else {
+            System.out.println(account.getDetails());
+        }
     }
 }
