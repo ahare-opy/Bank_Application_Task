@@ -141,7 +141,22 @@ public class App {
     }
 
     private static void deleteAccount() {
+        int accountNumber;
 
+        while (true) {
+            try {
+                accountNumber = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Enter a valid account number.");
+            }
+        }
+
+        if(bank.deleteAccount(accountNumber)) {
+            System.out.println("Account deleted successfully");
+        } else {
+            System.out.println("Bank not found");
+        }
     }
 
     private static void deposit() {
