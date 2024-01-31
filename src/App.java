@@ -145,6 +145,7 @@ public class App {
 
         while (true) {
             try {
+                System.out.println("Enter the account number to delete: ");
                 accountNumber = Integer.parseInt(scanner.nextLine());
                 break;
             } catch (Exception e) {
@@ -160,7 +161,42 @@ public class App {
     }
 
     private static void deposit() {
+        int accountNumber;
 
+        while (true) {
+            try {
+                System.out.println("Enter the account number: ");
+                accountNumber = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Enter a valid account number.");
+            }
+        }
+
+        double amount;
+
+        while (true) {
+            System.out.println("Enter deposit amount: ");
+            try {
+                amount = Double.parseDouble(scanner.nextLine());
+                if (amount <= 0) {
+                    System.out.println("Emter s positive number to deposit.");
+                    continue;
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Enter a valid amount.");
+            }
+        }
+
+        Account account = bank.findAccount(accountNumber);
+        if(account == null) {
+            System.out.println("Account not found");
+            return;
+        }
+
+        account.deposit(amount);
+        System.out.println("Amount deposited successfully. New Balance: " + account.getBalance());
     }
 
     private static void withdraw() {
